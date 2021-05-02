@@ -23,3 +23,6 @@ app.prepare().then(() => {
         console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
     });
 });
+// const render = (req: express.Request, res: express.Response, path: string, data?: any): void => {
+// }
+// const getRender = ():Function => render
