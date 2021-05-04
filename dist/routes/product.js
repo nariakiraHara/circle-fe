@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const server_1 = require("../server");
-const router = express_1.default();
-router.get('/product', async (req, res, next) => {
+const router = express_1.default.Router();
+router.get('/product', async (req, res) => {
     console.log('product index');
     console.log(req.path);
     const query = { sample: 'hoge' };

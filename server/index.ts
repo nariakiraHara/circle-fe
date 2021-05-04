@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 import next from 'next'
 import dotenv from 'dotenv'
-import productRouter from '../routes/product' 
+// import productRouter from '../routes/product' 
 
 dotenv.config()
 console.log(process.env.NODE_ENV)
@@ -27,6 +27,15 @@ const getRender = (): Function => render
 const start = async (): Promise<void> => {
 	await app.prepare()
 	const server = express();
+	server.get(
+		'/product',
+		async (req: express.Request, res: express.Response) => {
+			console.log('product index')
+			console.log(req.path)
+			const query = { sample: 'hoge'}
+			getRender()(req, res, req.path, query)
+		}
+	)
 	// server.all("*", (req: Request, res: Response) => {
 
 	// 	return handle(req, res);
@@ -35,11 +44,11 @@ const start = async (): Promise<void> => {
   server.get(['/_next/*', '/static/*'], (req, res) => {
     return handle(req, res)
   })
+	// server.use(productRouter)
 	server.listen(port, (err?: any) => {
 		if (err) throw err;
 		console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
 	});
-	server.use(productRouter)
 }
 
 try {

@@ -39,12 +39,12 @@ const start = async () => {
     server.get(['/_next/*', '/static/*'], (req, res) => {
         return handle(req, res);
     });
+    server.use(product_1.default);
     server.listen(port, (err) => {
         if (err)
             throw err;
         console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
     });
-    server.use(product_1.default);
 };
 try {
     start();
