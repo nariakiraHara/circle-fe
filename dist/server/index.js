@@ -32,14 +32,11 @@ exports.getRender = getRender;
 const start = async () => {
     await app.prepare();
     const server = express_1.default();
-    // server.all("*", (req: Request, res: Response) => {
-    // 	return handle(req, res);
-    // });  
+    server.use(product_1.default);
     // staticファイルのリクエストのハンドリング
     server.get(['/_next/*', '/static/*'], (req, res) => {
         return handle(req, res);
     });
-    server.use(product_1.default);
     server.listen(port, (err) => {
         if (err)
             throw err;

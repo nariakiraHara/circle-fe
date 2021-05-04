@@ -7,8 +7,6 @@ const express_1 = __importDefault(require("express"));
 const server_1 = require("../server");
 const router = express_1.default.Router();
 router.get('/product', async (req, res) => {
-    console.log('product index');
-    console.log(req.path);
     const query = { sample: 'hoge' };
     server_1.getRender()(req, res, req.path, query);
 });
